@@ -1,7 +1,7 @@
 FROM alpine:3.19.1
 
 RUN apk update \
-&& apk add \
+&& apk add --no-cache \
 postgresql16-client=16.1-r0 \
 yq \
 jq \
