@@ -50,12 +50,12 @@ jobs:
         context: ./
         file: ./Dockerfile
         push: true
-        tags: piccio/shell-tools:0.0.${{ GITHUB_REF_NAME }}
+        tags: piccio/shell-tools:0.0.${GITHUB_REF_NAME}
 
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
       with:
-        image-ref: piccio/shell-tools:0.0.${{ GITHUB_REF_NAME }}
+        image-ref: piccio/shell-tools:0.0.${GITHUB_REF_NAME}
         format: 'table'
         exit-code: '1'
         ignore-unfixed: true
