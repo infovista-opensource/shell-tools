@@ -39,10 +39,14 @@ jobs:
     needs: build
 
     steps:
+      - name: Get branch name
+        shell: bash
+        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+        id: branchID
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: piccio/shell-tools:0.0.${{ jobs.build.steps.branchID.outputs.branch }}
+          image-ref: piccio/shell-tools:0.0.${{ steps.branchID.outputs.branch }}
           format: 'table'
           exit-code: '1'
           ignore-unfixed: true
