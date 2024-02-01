@@ -31,21 +31,15 @@ jobs:
         file: ./Dockerfile
         push: false
         tags: piccio/shell-tools:0.0.${{ steps.branchID.outputs.branch }}
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@master
+      with:
+        image-ref: piccio/shell-tools:0.0.${{ steps.branchID.outputs.branch }}
+        format: 'table'
+        exit-code: '1'
+        ignore-unfixed: true
+        vuln-type: 'os,library'
+        severity: 'CRITICAL,HIGH'
+    
 
-    - name: Image digest
-      run: echo ${{ steps.docker_build.outputs.digest }}
-
-  security:
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@master
-        with:
-          image-ref: piccio/shell-tools:0.0.${{ steps.branchID.outputs.branch }}
-          format: 'table'
-          exit-code: '1'
-          ignore-unfixed: true
-          vuln-type: 'os,library'
-          severity: 'CRITICAL,HIGH'
+      
