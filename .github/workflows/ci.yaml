@@ -51,6 +51,7 @@ jobs:
         file: ./Dockerfile
         push: true
         tags: piccio/shell-tools:0.0.${{ github.ref_name }}
+      if: github.event_name != 'pull_request'
 
   security:
     runs-on: ubuntu-latest
@@ -65,5 +66,6 @@ jobs:
         ignore-unfixed: true
         vuln-type: 'os,library'
         severity: 'CRITICAL,HIGH'
+      if: github.event_name != 'pull_request'
 
 
