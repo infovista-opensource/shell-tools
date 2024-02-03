@@ -69,7 +69,7 @@ jobs:
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
       with:
-        image-ref: piccio/shell-tools:0.0.${{ github.ref_name }}
+        image-ref: piccio/shell-tools:${{ github.ref_name }}
         format: 'table'
         exit-code: '1'
         ignore-unfixed: true
