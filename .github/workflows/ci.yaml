@@ -5,7 +5,7 @@ on:
     branches:
       - '*'
     tags:
-      - 'v[0-9]+.[0-9]+.[0-9]+'
+      - '[0-9]+.[0-9]+.[0-9]+'
   pull_request:
     branches:
       - '*'
@@ -58,7 +58,8 @@ jobs:
         context: ./
         file: ./Dockerfile
         push: true
-        tags: piccio/shell-tools:0.0.${{ github.ref_name }}
+        #tags: piccio/shell-tools:0.0.${{ github.ref_name }}
+        tags: piccio/shell-tools:${{ github.ref_name }}
       if: github.event_name != 'pull_request'
 
   security:
