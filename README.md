@@ -5,7 +5,7 @@
 
 | Tool | Version | Origin |
 |---|---|---|
-| `PostgreSQL Client` | 14.10 | Package Manager |
+| `PostgreSQL Client` | 14.11 | Package Manager |
 | `jq` | 1.7.1 | Package Manager |
 | `yq` | 4.35.2 | Package Manager |
 | `Wait-For` | 1.0.0 | [Repo](https://github.com/mrako/wait-for/releases)
