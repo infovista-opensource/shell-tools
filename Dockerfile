@@ -3,7 +3,7 @@ FROM alpine:3.19.1
 RUN apk update \
 && apk add --no-cache \
 postgresql14-client=14.11-r0 \
-yq=4.35.2-r1 \
+yq=4.35.2-r2 \
 jq=1.7.1-r0 \
 && rm -rf /var/cache/apk/*
 
