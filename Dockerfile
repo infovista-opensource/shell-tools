@@ -1,9 +1,10 @@
 FROM alpine:3.20.0
 
 RUN apk update \
+&& apk upgrade \
 && apk add --no-cache \
 postgresql16-client=16.3-r0 \
-yq-go=4.44.1-r0 \
+yq-go=4.44.1-r1 \
 jq=1.7.1-r0 \
 && rm -rf /var/cache/apk/*
 
