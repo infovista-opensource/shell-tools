@@ -1,4 +1,4 @@
-FROM alpine:3.20.1
+FROM alpine:3.20.2
 
 RUN apk update \
 && apk upgrade \
@@ -6,6 +6,7 @@ RUN apk update \
 postgresql16-client=16.3-r0 \
 yq-go=4.44.1-r2 \
 jq=1.7.1-r0 \
+curl=8.9.0-r0 \
 && rm -rf /var/cache/apk/*
 
 
