@@ -10,4 +10,4 @@
 | `yq-go` | 4.44.1-r2 | Package Manager |
 | `curl`  | 8.9.1-r1 | Package Manager |
 | `wait-For` | 1.0.0 | [Repo](https://github.com/mrako/wait-for/releases)
-| `kubectl` | 1.30.2 | [Release](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-kubectl-binary-with-curl-on-linux)
+| `kubectl` | 1.31.0 | [Release](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-kubectl-binary-with-curl-on-linux)

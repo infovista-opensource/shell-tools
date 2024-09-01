@@ -12,12 +12,12 @@ curl=8.9.1-r1 \
 
 RUN wget -O- -q https://github.com/mrako/wait-for/releases/download/v1.0.0/wait-for \
 --output-document=/usr/local/bin/wait-for-1.0.0 \
-&& wget https://dl.k8s.io/release/v1.30.2/bin/linux/amd64/kubectl  \
---output-document=/usr/local/bin/kubectl-v1.30.2 \
+&& wget https://dl.k8s.io/release/v1.31.0/bin/linux/amd64/kubectl  \
+--output-document=/usr/local/bin/kubectl-v1.31.0 \
 && chmod +x /usr/local/bin/wait-for-1.0.0 \
 && ln -s /usr/local/bin/wait-for-1.0.0 /usr/local/bin/wait-for \
-&& chmod +x /usr/local/bin/kubectl-v1.30.2 \
-&& ln -s /usr/local/bin/kubectl-v1.30.1 /usr/local/bin/kubectl
+&& chmod +x /usr/local/bin/kubectl-v1.31.0 \
+&& ln -s /usr/local/bin/kubectl-v1.31.0 /usr/local/bin/kubectl
 
 
 USER 1001:1001
