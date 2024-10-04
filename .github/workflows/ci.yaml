@@ -76,7 +76,7 @@ jobs:
         ignore-unfixed: true
         vuln-type: 'os,library'
         severity: 'CRITICAL,HIGH'
-        trivyignores: .trivyignore
+        trivyignores: ../../.trivyignore
       if: github.event_name != 'pull_request'
 
 
