@@ -3,7 +3,7 @@ FROM alpine:3.20.3
 RUN apk update \
 && apk upgrade \
 && apk add --no-cache \
-postgresql16-client=16.4-r0 \
+postgresql16-client=16.5-r0 \
 yq-go=4.44.1-r2 \
 jq=1.7.1-r0 \
 curl=8.11.0-r2 \
