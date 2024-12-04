@@ -1,11 +1,13 @@
 # shell-tools
 
+Collection of tools useful for test/troubleshooting 
+
 
 ## Packages
 
 | Tool | Version | Origin |
 |---|---|---|
-| `PostgreSQL 16 Client` | 16.5-r0 | Package Manager |
+| `PostgreSQL 16 Client` | 16.6-r0 | Package Manager |
 | `jq` | 1.7.1-r0 | Package Manager |
 | `yq-go` | 4.44.1-r2 | Package Manager |
 | `curl`  | 8.11.0-r2 | Package Manager |
