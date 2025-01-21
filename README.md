@@ -1,5 +1,9 @@
 # shell-tools
 
+![GitHub Tag](https://img.shields.io/github/v/tag/infovista-opensource/shell-tools) ![Static Badge](https://img.shields.io/badge/alpine-3.21.2-brightgreen)
+
+
+
 Collection of tools useful for test/troubleshooting 
 
 
