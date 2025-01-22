@@ -14,16 +14,16 @@ bind-tools=9.18.32-r0 \
 
 RUN wget -O- -q https://github.com/mrako/wait-for/releases/download/v1.0.0/wait-for \
 --output-document=/usr/local/bin/wait-for-1.0.0 \
-&& wget https://dl.k8s.io/release/v1.32.0/bin/linux/amd64/kubectl  \
---output-document=/usr/local/bin/kubectl-v1.32.0 \
-&& wget https://dl.min.io/client/mc/release/linux-amd64/archive/mc.RELEASE.2024-11-21T17-21-54Z \
---output-document=/usr/local/bin/mc.RELEASE.2024-11-21T17-21-54Z \
+&& wget https://dl.k8s.io/release/v1.32.1/bin/linux/amd64/kubectl  \
+--output-document=/usr/local/bin/kubectl-v1.32.1 \
+&& wget https://dl.min.io/client/mc/release/linux-amd64/archive/mc.RELEASE.2025-01-17T23-25-50Z \
+--output-document=/usr/local/bin/mc.RELEASE.2025-01-17T23-25-50Z \
 && chmod +x /usr/local/bin/wait-for-1.0.0 \
 && ln -s /usr/local/bin/wait-for-1.0.0 /usr/local/bin/wait-for \
-&& chmod +x /usr/local/bin/kubectl-v1.32.0 \
-&& ln -s /usr/local/bin/kubectl-v1.32.0 /usr/local/bin/kubectl \
-&& chmod +x /usr/local/bin/mc.RELEASE.2024-11-21T17-21-54Z \
-&& ln -s /usr/local/bin/mc.RELEASE.2024-11-21T17-21-54Z /usr/local/bin/mc	\
+&& chmod +x /usr/local/bin/kubectl-v1.32.1 \
+&& ln -s /usr/local/bin/kubectl-v1.32.1 /usr/local/bin/kubectl \
+&& chmod +x /usr/local/bin/mc.RELEASE.2025-01-17T23-25-50Z \
+&& ln -s /usr/local/bin/mc.RELEASE.2025-01-17T23-25-50Z /usr/local/bin/mc	\
 && mkdir -p /etc/mc \
 && chown -R 1001:1001 /etc/mc/
 

@@ -18,6 +18,6 @@ Collection of tools useful for test/troubleshooting
 | `bash`  | 5.2.37-r0 | Package Manager |
 | `bind-tools`  | 9.18.32-r0    | Package Manager |
 | `wait-For` | 1.0.0 | [Repo](https://github.com/mrako/wait-for/releases) | 
-| `kubectl` | 1.32.0 | [Release](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-kubectl-binary-with-curl-on-linux) |
-| `mc` | RELEASE.2024-11-21T17-21-54Z | [Release](https://dl.min.io/client/mc/release/linux-amd64/) |
+| `kubectl` | 1.32.1 | [Release](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-kubectl-binary-with-curl-on-linux) |
+| `mc` | mc.RELEASE.2025-01-17T23-25-50Z | [Release](https://dl.min.io/client/mc/release/linux-amd64/) |
 
