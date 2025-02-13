@@ -30,6 +30,32 @@ Collection of tools useful for test/troubleshooting
 $ docker run piccio/shell-tools:1.9.2 psql <psql_args> 
 ```
 
+```
+$ kubectl -n empirix-cloud run foo --image=piccio/shell-tools:1.9.2 -it --rm --command -- /bin/bash
+foo:/# psql -h nla-postgres-ha-psqlha-pgpool.empirix-cloud.svc -p 5432 -U postgres
+Password for user postgres: 
+psql (16.6, server 16.3)
+Type "help" for help.
+
+postgres=# \l
+                                                       List of databases
+   Name    |  Owner   | Encoding | Locale Provider |   Collate   |    Ctype    | ICU Locale | ICU Rules |   Access privileges   
+-----------+----------+----------+-----------------+-------------+-------------+------------+-----------+-----------------------
+ postgres  | postgres | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 |            |           | 
+ repmgr    | postgres | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 |            |           | 
+ template0 | postgres | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 |            |           | =c/postgres          +
+           |          |          |                 |             |             |            |           | postgres=CTc/postgres
+ template1 | postgres | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 |            |           | =c/postgres          +
+           |          |          |                 |             |             |            |           | postgres=CTc/postgres
+(4 rows)
+
+postgres=# \q
+foo:/# exit
+exit
+Session ended, resume using 'kubectl attach foo -c foo -i -t' command when the pod is running
+pod "foo" deleted
+```
+
 ### MinIO client ( mc )
 
 
