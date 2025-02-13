@@ -21,3 +21,45 @@ Collection of tools useful for test/troubleshooting
 | `kubectl` | 1.32.1 | [Release](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-kubectl-binary-with-curl-on-linux) |
 | `mc` | mc.RELEASE.2025-02-08T19-14-21Z | [Release](https://dl.min.io/client/mc/release/linux-amd64/) |
 
+
+## Use Cases
+
+### PostgreSQL client ( psql )
+
+```
+$ docker run piccio/shell-tools:1.9.2 psql <psql_args> 
+```
+
+### MinIO client ( mc )
+
+
+```
+$ docker run piccio/shell-tools:1.9.2 mc <mc_args> 
+```
+
+
+### Command line
+
+
+```
+$ docker run -it piccio/shell-tools:1.9.2 /bin/bash
+82915c2289a3:/# ls -l /
+total 56
+drwxr-xr-x    1 root     root          4096 Feb  9 18:19 bin
+drwxr-xr-x    5 root     root           360 Feb 13 23:34 dev
+drwxr-xr-x    1 root     root          4096 Feb 13 23:34 etc
+drwxr-xr-x    2 root     root          4096 Jan  8 11:04 home
+drwxr-xr-x    1 root     root          4096 Jan  8 11:04 lib
+drwxr-xr-x    5 root     root          4096 Jan  8 11:04 media
+drwxr-xr-x    2 root     root          4096 Jan  8 11:04 mnt
+drwxr-xr-x    2 root     root          4096 Jan  8 11:04 opt
+dr-xr-xr-x  599 root     root             0 Feb 13 23:34 proc
+drwx------    2 root     root          4096 Jan  8 11:04 root
+drwxr-xr-x    3 root     root          4096 Jan  8 11:04 run
+drwxr-xr-x    2 root     root          4096 Jan  8 11:04 sbin
+drwxr-xr-x    2 root     root          4096 Jan  8 11:04 srv
+dr-xr-xr-x   13 root     root             0 Feb 13 23:34 sys
+drwxrwxrwt    2 root     root          4096 Jan  8 11:04 tmp
+drwxr-xr-x    1 root     root          4096 Feb  9 18:19 usr
+drwxr-xr-x   11 root     root          4096 Jan  8 11:04 var 
+```
