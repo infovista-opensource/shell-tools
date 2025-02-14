@@ -1,13 +1,14 @@
-FROM alpine:3.21.0
+FROM alpine:3.21.2
 
 RUN apk update \
 && apk upgrade \
 && apk add --no-cache \
-	postgresql16-client=16.6-r0 \
+postgresql16-client=16.6-r0 \
 yq-go=4.44.5-r2 \
 jq=1.7.1-r0 \
 curl=8.12.1-r0 \
 bash=5.2.37-r0 \
+bind-tools=9.18.33-r0 \
 && rm -rf /var/cache/apk/*
 
 
@@ -28,5 +29,5 @@ RUN wget -O- -q https://github.com/mrako/wait-for/releases/download/v1.0.0/wait-
 
 ENV MC_CONFIG_DIR="/etc/mc"
 
-USER 1001:1001
+#USER 1001:1001
 

@@ -2,6 +2,8 @@
 # kubectl
 CVE-2024-45338
 
-# MinIO Client
-
-
+## minio client (mc)
+CVE-2024-45336
+CVE-2024-45338
+CVE-2024-45341
+CVE-2025-22866
