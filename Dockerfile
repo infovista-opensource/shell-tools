@@ -1,14 +1,14 @@
-FROM alpine:3.21.2
+FROM alpine:3.21.3
 
 RUN apk update \
 && apk upgrade \
 && apk add --no-cache \
-postgresql16-client=16.6-r0 \
-yq-go=4.44.5-r2 \
-jq=1.7.1-r0 \
-curl=8.12.1-r0 \
-bash=5.2.37-r0 \
-bind-tools=9.18.33-r0 \
+postgresql16-client \
+yq-go \
+jq \
+curl \
+bash \
+bind-tools \
 && rm -rf /var/cache/apk/*
 
 
