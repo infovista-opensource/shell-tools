@@ -17,9 +17,10 @@ Collection of tools useful for test/troubleshooting
 | `curl`  | latest | Package Manager |
 | `bash`  | latest | Package Manager |
 | `bind-tools`  | latest    | Package Manager |
-| `wait-For` | 1.0.0 | [Repo](https://github.com/mrako/wait-for/releases) | 
-| `kubectl` | 1.33.0 | [Release](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-kubectl-binary-with-curl-on-linux) |
-| `mc` | RELEASE.2025-04-16T18-13-26Z | [Release](https://dl.min.io/client/mc/release/linux-amd64/) |
+| `wait-for` | 1.0.0 | [Repo](https://github.com/mrako/wait-for/releases) | 
+| `wait4x` | 3.5.1 | [Repo](https://github.com/wait4x/wait4x/releases) | 
+| `kubectl` | 1.34.0 | [Release](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-kubectl-binary-with-curl-on-linux) |
+| `mc` | RELEASE.2025-08-13T08-35-41Z | [Release](https://dl.min.io/client/mc/release/linux-amd64/) |
 
 
 
