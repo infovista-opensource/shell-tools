@@ -1,5 +1,7 @@
 
-# kubectl
+## kubectl
 
 ## minio client (mc)
-CVE-2024-45338
+
+## wait4x
+CVE-2025-47907
