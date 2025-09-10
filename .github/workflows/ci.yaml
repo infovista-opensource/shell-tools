@@ -80,7 +80,7 @@ jobs:
           type=semver,pattern={{version}}
           type=semver,pattern={{major}}.{{minor}}
     - name: Run Trivy vulnerability scanner
-      uses: aquasecurity/trivy-action@0.30.0
+      uses: aquasecurity/trivy-action@0.33.1
       with:
         image-ref: piccio/shell-tools:${{ github.ref_name }}
         format: 'table'
