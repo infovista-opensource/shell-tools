@@ -11,7 +11,7 @@ Collection of tools useful for test/troubleshooting
 
 | Tool | Version | Origin |
 |---|---|---|
-| `PostgreSQL 16 Client` | latest | Package Manager |
+| `PostgreSQL 17 Client` | latest | Package Manager |
 | `jq` | latest | Package Manager |
 | `yq-go` | latest | Package Manager |
 | `curl`  | latest | Package Manager |
@@ -21,7 +21,7 @@ Collection of tools useful for test/troubleshooting
 | `wait4x` | 3.6.0 | [Repo](https://github.com/wait4x/wait4x/releases) | 
 | `kubectl` | 1.34.0 | [Release](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-kubectl-binary-with-curl-on-linux) |
 | `mc` | RELEASE.2025-08-13T08-35-41Z | [Release](https://dl.min.io/client/mc/release/linux-amd64/) |
-
+| `helm` | 4.0.0 | [Release](https://get.helm.sh/helm-v4.0.0-linux-amd64.tar.gz) |
 
 
 ## Use Cases
