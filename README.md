@@ -1,6 +1,6 @@
 # shell-tools
 
-![GitHub Tag](https://img.shields.io/github/v/tag/infovista-opensource/shell-tools) ![Static Badge](https://img.shields.io/badge/alpine-3.22.2-brightgreen)
+![GitHub Tag](https://img.shields.io/github/v/tag/infovista-opensource/shell-tools) ![Static Badge](https://img.shields.io/badge/alpine-3.23.2-brightgreen)
 
 
 
@@ -19,7 +19,7 @@ Collection of tools useful for test/troubleshooting
 | `bind-tools`  | latest    | Package Manager |
 | `wait-for` | 1.0.0 | [Repo](https://github.com/mrako/wait-for/releases) | 
 | `wait4x` | 3.6.0 | [Repo](https://github.com/wait4x/wait4x/releases) | 
-| `kubectl` | 1.34.0 | [Release](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-kubectl-binary-with-curl-on-linux) |
+| `kubectl` | 1.35.0 | [Release](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-kubectl-binary-with-curl-on-linux) |
 | `mc` | RELEASE.2025-08-13T08-35-41Z | [Release](https://dl.min.io/client/mc/release/linux-amd64/) |
 | `helm` | 4.0.0 | [Release](https://get.helm.sh/helm-v4.0.0-linux-amd64.tar.gz) |
 
