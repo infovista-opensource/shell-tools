@@ -1,93 +1,112 @@
 # shell-tools
 
-![GitHub Tag](https://img.shields.io/github/v/tag/infovista-opensource/shell-tools) ![Static Badge](https://img.shields.io/badge/alpine-3.23.2-brightgreen)
+![GitHub Tag](https://img.shields.io/github/v/tag/infovista-opensource/shell-tools)
+![Alpine](https://img.shields.io/badge/alpine-3.23.4-brightgreen)
+![License](https://img.shields.io/badge/license-Apache%202.0-blue)
 
+A lightweight, Alpine-based Docker image bundling essential CLI tools for testing, debugging, and troubleshooting in Kubernetes and cloud-native environments.
 
+## Table of Contents
 
-Collection of tools useful for test/troubleshooting 
+- [Included Tools](#included-tools)
+- [Quick Start](#quick-start)
+- [Usage Examples](#usage-examples)
+- [Security](#security)
+- [License](#license)
 
+## Included Tools
 
-## Packages
+### From Package Manager
 
-| Tool | Version | Origin |
+| Tool | Description |
+|---|---|
+| `psql` (PostgreSQL 18 Client) | PostgreSQL interactive terminal |
+| `jq` | Lightweight JSON processor |
+| `yq` (yq-go) | YAML/JSON/XML processor |
+| `curl` | Data transfer tool |
+| `bash` | Bourne Again Shell |
+| `bind-tools` | DNS utilities (`dig`, `nslookup`, `host`) |
+
+### From External Releases
+
+| Tool | Version | Source |
 |---|---|---|
-| `PostgreSQL 17 Client` | latest | Package Manager |
-| `jq` | latest | Package Manager |
-| `yq-go` | latest | Package Manager |
-| `curl`  | latest | Package Manager |
-| `bash`  | latest | Package Manager |
-| `bind-tools`  | latest    | Package Manager |
-| `wait-for` | 1.0.0 | [Repo](https://github.com/mrako/wait-for/releases) | 
-| `wait4x` | 3.6.0 | [Repo](https://github.com/wait4x/wait4x/releases) | 
-| `kubectl` | 1.35.0 | [Release](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-kubectl-binary-with-curl-on-linux) |
-| `mc` | RELEASE.2025-08-13T08-35-41Z | [Release](https://dl.min.io/client/mc/release/linux-amd64/) |
-| `helm` | 4.0.0 | [Release](https://get.helm.sh/helm-v4.0.0-linux-amd64.tar.gz) |
+| `wait-for` | 1.0.0 | [GitHub](https://github.com/mrako/wait-for/releases) |
+| `wait4x` | 3.6.0 | [GitHub](https://github.com/wait4x/wait4x/releases) |
+| `kubectl` | 1.36.0 | [Kubernetes](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/) |
+| `helm` | 4.1.1 | [Helm](https://github.com/helm/helm/releases) |
+| `mc` (MinIO Client) | RELEASE.2025-08-13T08-35-41Z | [MinIO](https://dl.min.io/client/mc/release/linux-amd64/) |
 
+## Quick Start
 
-## Use Cases
+```bash
+# Run a one-off command
+docker run --rm piccio/shell-tools:1.11.0 <command>
 
-### PostgreSQL client ( psql )
+# Open an interactive shell
+docker run --rm -it piccio/shell-tools:1.11.0 /bin/bash
 
-```
-$ docker run piccio/shell-tools:1.9.2 psql <psql_args> 
+# Run as an ephemeral pod in Kubernetes
+kubectl run shell-tools --image=piccio/shell-tools:1.11.0 -it --rm -- /bin/bash
 ```
 
-```
-$ kubectl -n empirix-cloud run foo --image=piccio/shell-tools:1.9.2 -it --rm --command -- /bin/bash
-foo:/# psql -h nla-postgres-ha-psqlha-pgpool.empirix-cloud.svc -p 5432 -U postgres
-Password for user postgres: 
-psql (16.6, server 16.3)
-Type "help" for help.
+## Usage Examples
 
-postgres=# \l
-                                                       List of databases
-   Name    |  Owner   | Encoding | Locale Provider |   Collate   |    Ctype    | ICU Locale | ICU Rules |   Access privileges   
------------+----------+----------+-----------------+-------------+-------------+------------+-----------+-----------------------
- postgres  | postgres | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 |            |           | 
- repmgr    | postgres | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 |            |           | 
- template0 | postgres | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 |            |           | =c/postgres          +
-           |          |          |                 |             |             |            |           | postgres=CTc/postgres
- template1 | postgres | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 |            |           | =c/postgres          +
-           |          |          |                 |             |             |            |           | postgres=CTc/postgres
-(4 rows)
+### PostgreSQL Client
 
-postgres=# \q
-foo:/# exit
-exit
-Session ended, resume using 'kubectl attach foo -c foo -i -t' command when the pod is running
-pod "foo" deleted
+Connect to a PostgreSQL instance directly:
+
+```bash
+docker run --rm piccio/shell-tools:1.11.0 psql -h <host> -p 5432 -U <user> -d <database>
 ```
 
-### MinIO client ( mc )
+Use within a Kubernetes cluster to reach an internal PostgreSQL service:
 
-
+```bash
+kubectl -n <namespace> run shell-tools --image=piccio/shell-tools:1.11.0 -it --rm -- \
+  psql -h <postgres-service>.<namespace>.svc -p 5432 -U postgres
 ```
-$ docker run piccio/shell-tools:1.9.2 mc <mc_args> 
+
+### MinIO Client
+
+```bash
+docker run --rm piccio/shell-tools:1.11.0 mc alias set myminio http://<minio-host>:9000 <access-key> <secret-key>
 ```
 
+### DNS Troubleshooting
 
-### Command line
-
-
+```bash
+docker run --rm piccio/shell-tools:1.11.0 dig <domain>
+docker run --rm piccio/shell-tools:1.11.0 nslookup <service>.<namespace>.svc.cluster.local
 ```
-$ docker run -it piccio/shell-tools:1.9.2 /bin/bash
-82915c2289a3:/# ls -l /
-total 56
-drwxr-xr-x    1 root     root          4096 Feb  9 18:19 bin
-drwxr-xr-x    5 root     root           360 Feb 13 23:34 dev
-drwxr-xr-x    1 root     root          4096 Feb 13 23:34 etc
-drwxr-xr-x    2 root     root          4096 Jan  8 11:04 home
-drwxr-xr-x    1 root     root          4096 Jan  8 11:04 lib
-drwxr-xr-x    5 root     root          4096 Jan  8 11:04 media
-drwxr-xr-x    2 root     root          4096 Jan  8 11:04 mnt
-drwxr-xr-x    2 root     root          4096 Jan  8 11:04 opt
-dr-xr-xr-x  599 root     root             0 Feb 13 23:34 proc
-drwx------    2 root     root          4096 Jan  8 11:04 root
-drwxr-xr-x    3 root     root          4096 Jan  8 11:04 run
-drwxr-xr-x    2 root     root          4096 Jan  8 11:04 sbin
-drwxr-xr-x    2 root     root          4096 Jan  8 11:04 srv
-dr-xr-xr-x   13 root     root             0 Feb 13 23:34 sys
-drwxrwxrwt    2 root     root          4096 Jan  8 11:04 tmp
-drwxr-xr-x    1 root     root          4096 Feb  9 18:19 usr
-drwxr-xr-x   11 root     root          4096 Jan  8 11:04 var 
+
+### Service Readiness Checks
+
+Wait for a TCP port to become available:
+
+```bash
+docker run --rm piccio/shell-tools:1.11.0 wait-for <host>:<port> -- echo "Service is up"
 ```
+
+Advanced readiness check with `wait4x`:
+
+```bash
+docker run --rm piccio/shell-tools:1.11.0 wait4x http http://<host>:<port>/health
+```
+
+### Helm & Kubectl
+
+```bash
+docker run --rm -v ~/.kube:/home/iv/.kube:ro piccio/shell-tools:1.11.0 kubectl get pods -A
+docker run --rm -v ~/.kube:/home/iv/.kube:ro piccio/shell-tools:1.11.0 helm list -A
+```
+
+## Security
+
+- The image runs as a **non-root user** (`iv`, UID/GID `1001`) by default.
+- All external binaries are versioned and symlinked (e.g., `kubectl-v1.36.0` → `kubectl`), enabling easy auditing and rollback.
+- Base image is kept minimal with Alpine and the APK cache is purged after installation.
+
+## License
+
+This project is licensed under the [Apache License 2.0](LICENSE).
