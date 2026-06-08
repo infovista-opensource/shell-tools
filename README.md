@@ -33,8 +33,8 @@ A lightweight, Alpine-based Docker image bundling essential CLI tools for testin
 |---|---|---|
 | `wait-for` | 1.0.0 | [GitHub](https://github.com/mrako/wait-for/releases) |
 | `wait4x` | 3.6.0 | [GitHub](https://github.com/wait4x/wait4x/releases) |
-| `kubectl` | 1.36.0 | [Kubernetes](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/) |
-| `helm` | 4.1.1 | [Helm](https://github.com/helm/helm/releases) |
+| `kubectl` | 1.36.1 | [Kubernetes](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/) |
+| `helm` | 4.2.0 | [Helm](https://github.com/helm/helm/releases) |
 | `mc` (MinIO Client) | RELEASE.2025-08-13T08-35-41Z | [MinIO](https://dl.min.io/client/mc/release/linux-amd64/) |
 
 ## Quick Start
