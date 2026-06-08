@@ -41,13 +41,13 @@ A lightweight, Alpine-based Docker image bundling essential CLI tools for testin
 
 ```bash
 # Run a one-off command
-docker run --rm piccio/shell-tools:1.11.0 <command>
+docker run --rm piccio/shell-tools <command>
 
 # Open an interactive shell
-docker run --rm -it piccio/shell-tools:1.11.0 /bin/bash
+docker run --rm -it piccio/shell-tools /bin/bash
 
 # Run as an ephemeral pod in Kubernetes
-kubectl run shell-tools --image=piccio/shell-tools:1.11.0 -it --rm -- /bin/bash
+kubectl run shell-tools --image=piccio/shell-tools -it --rm -- /bin/bash
 ```
 
 ## Usage Examples
@@ -57,27 +57,27 @@ kubectl run shell-tools --image=piccio/shell-tools:1.11.0 -it --rm -- /bin/bash
 Connect to a PostgreSQL instance directly:
 
 ```bash
-docker run --rm piccio/shell-tools:1.11.0 psql -h <host> -p 5432 -U <user> -d <database>
+docker run --rm piccio/shell-tools psql -h <host> -p 5432 -U <user> -d <database>
 ```
 
 Use within a Kubernetes cluster to reach an internal PostgreSQL service:
 
 ```bash
-kubectl -n <namespace> run shell-tools --image=piccio/shell-tools:1.11.0 -it --rm -- \
+kubectl -n <namespace> run shell-tools --image=piccio/shell-tools -it --rm -- \
   psql -h <postgres-service>.<namespace>.svc -p 5432 -U postgres
 ```
 
 ### MinIO Client
 
 ```bash
-docker run --rm piccio/shell-tools:1.11.0 mc alias set myminio http://<minio-host>:9000 <access-key> <secret-key>
+docker run --rm piccio/shell-tools mc alias set myminio http://<minio-host>:9000 <access-key> <secret-key>
 ```
 
 ### DNS Troubleshooting
 
 ```bash
-docker run --rm piccio/shell-tools:1.11.0 dig <domain>
-docker run --rm piccio/shell-tools:1.11.0 nslookup <service>.<namespace>.svc.cluster.local
+docker run --rm piccio/shell-tools dig <domain>
+docker run --rm piccio/shell-tools nslookup <service>.<namespace>.svc.cluster.local
 ```
 
 ### Service Readiness Checks
@@ -85,21 +85,27 @@ docker run --rm piccio/shell-tools:1.11.0 nslookup <service>.<namespace>.svc.clu
 Wait for a TCP port to become available:
 
 ```bash
-docker run --rm piccio/shell-tools:1.11.0 wait-for <host>:<port> -- echo "Service is up"
+docker run --rm piccio/shell-tools wait-for <host>:<port> -- echo "Service is up"
 ```
 
 Advanced readiness check with `wait4x`:
 
 ```bash
-docker run --rm piccio/shell-tools:1.11.0 wait4x http http://<host>:<port>/health
+docker run --rm piccio/shell-tools wait4x http http://<host>:<port>/health
 ```
 
 ### Helm & Kubectl
 
 ```bash
-docker run --rm -v ~/.kube:/home/iv/.kube:ro piccio/shell-tools:1.11.0 kubectl get pods -A
-docker run --rm -v ~/.kube:/home/iv/.kube:ro piccio/shell-tools:1.11.0 helm list -A
+docker run --rm --user $(id -u):$(id -g) -v ~/.kube:/home/iv/.kube:ro piccio/shell-tools kubectl get pods -A
+docker run --rm --user $(id -u):$(id -g) -v ~/.kube:/home/iv/.kube:ro piccio/shell-tools helm list -A
 ```
+
+> **Note:** With local clusters (Kind, minikube with docker driver, k3d), the API server listens on `localhost`. Add `--network host` and set `KUBECONFIG` explicitly (overriding `--user` changes `HOME`):
+>
+> ```bash
+> docker run --rm --network host --user $(id -u):$(id -g) -e KUBECONFIG=/home/iv/.kube/config -v ~/.kube:/home/iv/.kube:ro piccio/shell-tools kubectl get pods -A
+> ```
 
 ## Security
 
