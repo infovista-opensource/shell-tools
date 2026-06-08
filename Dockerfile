@@ -11,35 +11,32 @@ ARG HELM_VERSION="4.2.0"
 ARG KUBECTL_VERSION="1.36.1"
 ARG MC_VERSION="RELEASE.2025-08-13T08-35-41Z"
 
-RUN apk update \
-&& apk upgrade \
-&& apk add --no-cache \
+RUN apk add --no-cache \
 postgresql${POSTGRESQL_VERSION}-client \
 yq-go \
 jq \
 curl \
 bash \
-bind-tools \
-&& rm -rf /var/cache/apk/*
+bind-tools
 
 RUN addgroup -g 1001 iv && adduser -D -G iv -u 1001 iv
 
-RUN wget -O- -q https://github.com/mrako/wait-for/releases/download/v${WAIT4_VERSION}/wait-for \
---output-document=/usr/local/bin/wait-for-${WAIT4_VERSION} \
-&& wget -O- -q https://github.com/wait4x/wait4x/releases/download/v${WAIT4X_VERSION}/wait4x-linux-amd64.tar.gz \
---output-document=/tmp/wait4x-linux-amd64.tar.gz \
+RUN wget -q -O /usr/local/bin/wait-for-${WAIT4_VERSION} \
+  https://github.com/mrako/wait-for/releases/download/v${WAIT4_VERSION}/wait-for \
+&& wget -q -O /tmp/wait4x-linux-amd64.tar.gz \
+  https://github.com/wait4x/wait4x/releases/download/v${WAIT4X_VERSION}/wait4x-linux-amd64.tar.gz \
 && mkdir /tmp/wait4x && tar -xvf /tmp/wait4x-linux-amd64.tar.gz -C /tmp/wait4x \
 && mv /tmp/wait4x/wait4x /usr/local/bin/wait4x-${WAIT4X_VERSION} \
 && rm -rf /tmp/wait4x /tmp/wait4x-linux-amd64.tar.gz \
-&& wget https://get.helm.sh/helm-v${HELM_VERSION}-linux-amd64.tar.gz \
---output-document=/tmp/helm-v${HELM_VERSION}-linux-amd64.tar.gz \
+&& wget -q -O /tmp/helm-v${HELM_VERSION}-linux-amd64.tar.gz \
+  https://get.helm.sh/helm-v${HELM_VERSION}-linux-amd64.tar.gz \
 && mkdir /tmp/helm && tar -xvf /tmp/helm-v${HELM_VERSION}-linux-amd64.tar.gz -C /tmp/helm \
 && mv /tmp/helm/linux-amd64/helm /usr/local/bin/helm-v${HELM_VERSION} \
 && rm -rf /tmp/helm /tmp/helm-v${HELM_VERSION}-linux-amd64.tar.gz \
-&& wget https://dl.k8s.io/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl \
---output-document=/usr/local/bin/kubectl-v${KUBECTL_VERSION} \
-&& wget https://dl.min.io/client/mc/release/linux-amd64/archive/mc.${MC_VERSION} \
---output-document=/usr/local/bin/mc.${MC_VERSION} \
+&& wget -q -O /usr/local/bin/kubectl-v${KUBECTL_VERSION} \
+  https://dl.k8s.io/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl \
+&& wget -q -O /usr/local/bin/mc.${MC_VERSION} \
+  https://dl.min.io/client/mc/release/linux-amd64/archive/mc.${MC_VERSION} \
 && chmod +x /usr/local/bin/wait4x-${WAIT4X_VERSION} \
 && ln -s /usr/local/bin/wait4x-${WAIT4X_VERSION} /usr/local/bin/wait4x \
 && chmod +x /usr/local/bin/wait-for-${WAIT4_VERSION} \
